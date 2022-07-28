@@ -33,6 +33,8 @@ def pokemon():
                 'defense' : data['stats'][2]['base_stat']
                             } 
             print(pokeDict)
+            return render_template('pokemon.html', form = form, pokeDict = pokeDict, pokemon=pokemon)
+
            
 
         else:
