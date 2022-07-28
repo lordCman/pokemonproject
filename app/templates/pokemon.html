@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h1 class = 'text-center text-danger'> Welcome To The Pokemon Info Page!</h1>
+
+
+    <form class = 'container w-25' method = 'POST'>
+        {{ form.hidden_tag() }}
+
+        {{ form.pokemon_name(class='form-control', placeholder="pokemon name") }}
+        {{ form.submit(class='btn btn-primary') }}
+    </form>
+
+    <div class="container text-center">
+        {% if pokeDict %}
+        <div class="card position-absolute top-50 start-50 translate-middle" style="width: 18rem;">
+            <img src="{{ pokeDict.sprite }}" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">{{ pokeDict.name }}</h5>
+              <p class="card-text"> <li>{{ pokeDict.abilities }}</li> 
+                                    <li>ATK {{ pokeDict.attack }}</li>
+                                    <li>DEF {{ pokeDict.defense }}</li>
+                                    <li>HP {{ pokeDict.hp }}</li>
+              </p>
+            </div>
+          </div>
+
+
+        {% endif %}
+    </div>
+
+{% endblock %}
