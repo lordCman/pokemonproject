@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">Home</a>
+      <a class="navbar-brand text-bg-primary p-3" href="/">Home</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -9,10 +9,12 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/pokemonInfo">Pokemon</a>
           </li>
-          <li class="nav-item">
-            <a href="{{ url_for('acc') }}"  class="text-decoration-none">Account</a>
-          </li>
+          
           {% if current_user.is_authenticated %}
+          <li class="nav-item">
+          
+            <a class="nav-link" href="/myPokemon">MyPokemon</a>
+          </li>
           <li class="nav-item">
           
             <a class="nav-link" href="/logout">Log Out</a>
@@ -27,10 +29,13 @@
           {% endif %}
           <li class="nav-item">
             {% if current_user.is_authenticated %}
-            <p class="nav-link">Hello, {{ current_user.username }}</p>
+            <p class="nav-link" style = "width: 1400px;">Hello, {{ current_user.username }}</p>
             {% else %}
             <p class="nav-link">Hello, Guest</p>
             {% endif %}
+            <li class="nav-item">
+              <a href="{{ url_for('account') }}"  class="text-decoration-none text-bg-primary p-3">Account</a>
+            </li>
         </ul>
       </div>
     </div>

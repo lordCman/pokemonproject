@@ -15,19 +15,21 @@
     <div class="container text-center">
         {% if pokeDict %}
         <div class="card position-absolute top-50 start-50 translate-middle" style="width: 18rem;">
-            <img src="{{ pokeDict[pokemon].sprite }}" class="card-img-top" alt="">
+            <img src="{{ pokeDict.sprite }}" class="card-img-top" alt="">
             <div class="card-body">
-              <h5 class="card-title">{{ pokeDict[pokemon].name }}</h5>
-              <p class="card-text"> <li>{{ pokeDict[pokemon].abilities }}</li> 
-                                    <li>ATK {{ pokeDict[pokemon].attack }}</li>
-                                    <li>DEF {{ pokeDict[pokemon].defense }}</li>
-                                    <li>HP {{ pokeDict[pokemon].hp }}</li>
+              <h5 class="card-title">{{ pokemon }}</h5>
+              <p class="card-text"> <li>{{ pokeDict.abilities }}</li> 
+                                    <li>ATK {{ pokeDict.attack }}</li>
+                                    <li>DEF {{ pokeDict.defense }}</li>
+                                    <li>HP {{ pokeDict.hp }}</li>
               </p>
+              <a class = 'btn btn-success' href = '{{ url_for("poke.getPoke") }}'> Catch!</a>
             </div>
           </div>
 
 
         {% endif %}
+       
     </div>
 
 {% endblock %}

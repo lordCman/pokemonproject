@@ -2,11 +2,11 @@ import requests
 from app import app
 from flask import redirect, render_template,  Blueprint, request, url_for
 import requests
-from .models import User
+from .models import User, Pokemon
 from flask_login import login_required, current_user
 
 
-from .forms import PokemonInfoForm, updateAcc
+from .forms import PokemonInfoForm
 
 poke = Blueprint('poke', __name__, static_url_path='/pokemonInfo')
 
@@ -14,66 +14,39 @@ poke = Blueprint('poke', __name__, static_url_path='/pokemonInfo')
 def home1():
     return render_template('home1.html')
 
-@app.route('/pokemonInfo', methods = ['GET', 'POST'])
-def pokemon():
-    form = PokemonInfoForm()
-    pokeDict = {}
-    if request.method == "POST":
-        print('POST request made')
-        if form.validate():
-            pokemon_name = form.pokemon_name.data
-            response = requests.get(f'http://pokeapi.co/api/v2/pokemon/{pokemon_name}')
-            data = response.json()
-            pokeDict = {}
-            pokemon = data['name']
-            pokeDict[pokemon] = {
-                'name' : data['name'],
-                'abilities' : data['abilities'][0]['ability']['name'],
-                'base_exp' : data['base_experience'],
-                'sprite' : data['sprites']['front_shiny'],
-                'attack' : data['stats'][0]['base_stat'],
-                'hp' : data['stats'][1]['base_stat'],
-                'defense' : data['stats'][2]['base_stat']
-                            } 
-            print(pokeDict)
-           
 
-        else:
-            return 'Validation failed'
-            
-            
-
-
-
-
-    return render_template('pokemon.html', form = form, pokeDict = pokeDict, pokemon =pokemon)
-
-
-@app.route('/account/')
+@app.route('/account')
 @login_required
-def acc():
-    user = current_user.username
+def account():
+    user = current_user
     return render_template('account.html', user=user)
 
+# @app.route('/myPokemon')
+# @login_required
+# def getPoke():
+#     return render_template('')
 
-app.route('/account/update', methods = ['GET', 'POST'])
-def updateAccount(user):
-    user = User.query.filter_by(username=current_user.id).first()
-    form = updateAcc() 
-    if current_user.id == user.id:
-        if request.method=="POST":
-            if user.validate():
-                username = form.username.data
-                name = form.name.data
-                email = form.email.data
 
-                user.updateAcc(username,name,email)
-                user.saveUpdates()
 
-                return redirect(url_for('acc', user =user, form = form))
-        else:
-            pass
-    return render_template('updateAcc.html', user=user, form = form)
+
+# app.route('/account/update', methods = ['GET', 'POST'])
+# def updateAcc():
+#     user = User.query.filter_by(username=current_user.id).first()
+#     form = user.updateAccount()
+#     if current_user.id == user.id:
+#         if request.method=="POST":
+#             if user.validate():
+#                 username = form.username.data
+#                 name = form.name.data
+#                 email = form.email.data
+
+#                 user.updateAcc(username,name,email)
+#                 user.saveUpdates()
+
+#                 return redirect(url_for('acc', user =user, form = form))
+#         else:
+#             pass
+#     return render_template('updateAcc.html', user=user, form = form)
 
 # @ig.route('/posts/update/<int:post_id>', methods=["GET", "POST"])
 # def updatePost(post_id):
@@ -96,3 +69,9 @@ def updateAccount(user):
 #         else:
 #             flash('Invalid form. Please fill out the form correctly.', 'danger')
 #     return render_template('updatepost.html', form=form,  post=post)
+
+
+# app.route('/account/update', methods = ['GET', 'POST'])
+# def update():
+#     return render_template('updateAcc.html')
+
