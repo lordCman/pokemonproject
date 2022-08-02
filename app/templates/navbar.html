@@ -10,14 +10,27 @@
             <a class="nav-link active" aria-current="page" href="/pokemonInfo">Pokemon</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
+            <a href="{{ url_for('acc') }}"  class="text-decoration-none">Account</a>
+          </li>
+          {% if current_user.is_authenticated %}
+          <li class="nav-item">
+          
+            <a class="nav-link" href="/logout">Log Out</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Log In</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
+            <a class="nav-link" href="/signup">Sign Up</a>
           </li>
+          {% endif %}
           <li class="nav-item">
-            <a class="nav-link disabled">Disabled</a>
-          </li>
+            {% if current_user.is_authenticated %}
+            <p class="nav-link">Hello, {{ current_user.username }}</p>
+            {% else %}
+            <p class="nav-link">Hello, Guest</p>
+            {% endif %}
         </ul>
       </div>
     </div>
