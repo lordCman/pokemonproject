@@ -2,9 +2,22 @@
 
 
 {% block content %}
+
     <h1 class = 'text-center text-danger'> Your Pokedex</h1>
     {% for poke in pokemon %}
-        <img src = '{{ poke.imgurl }}'>
+    <div>
+        <div class="card " style="width: 18rem;">
+            <img src="{{ poke.imgurl }}" class="card-img-top" alt="">
+            <div class="card-body">
+            <h5 class="card-title">Name: {{ poke.name }}</h5>
+            <p class="card-text">ATK: {{ poke.attack }}</p>
+            <p class="card-text"> DEF: {{ poke.defense }}</p>
+            <p class="card-text"> HP: {{ poke.hp }}</p>
+            <p class="card-text"> Ability: {{ poke.ability }}</p>
+            </div>
+        </div>
+    </div>
+        
     {% endfor %}
 
 {% endblock %}

@@ -18,5 +18,11 @@ def letsBattle():
 @battle.route('/battle/<int:user_id>')
 def battling(user_id):
     user = User.query.get(user_id)
+    pokes = user.mypokes.all()
+    # for poke in pokes:
+    #     pokeInfo = poke
+
     current_user.battles(user)
-    return render_template('battling.html')
+
+    return render_template('battling.html', user = user, pokes=pokes)
+    # return redirect(url_for('battle.letsBattle', user = user) )

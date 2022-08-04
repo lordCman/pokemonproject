@@ -86,3 +86,4 @@ class Pokemon(db.Model):
         self.imgurl = imgurl
 
 
+# class Battles
