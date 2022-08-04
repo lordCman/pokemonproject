@@ -23,12 +23,19 @@
                                     <li>DEF {{ pokeDict.defense }}</li>
                                     <li>HP {{ pokeDict.hp }}</li>
               </p>
-              <a class = 'btn btn-success' href = '{{ url_for("poke.getPoke") }}'> Catch!</a>
+         
+              {% if flag %}
+              <a class = 'btn btn-danger' href = '{{ url_for("poke.releasePoke", pokemon = pokeDict.name) }}'> Release!</a>
+              {% else %}
+              
+              <a class = 'btn btn-success' href = "{{ url_for('poke.catchPoke', pokemon = pokeDict.name) }}"> Catch!</a>
+              {% endif %}
+          {% endif %} 
             </div>
           </div>
 
 
-        {% endif %}
+        
        
     </div>
 

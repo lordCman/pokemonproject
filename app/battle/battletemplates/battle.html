@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h1 class = 'text-center'>BATTLE!</h1>
+    {% for u in users  %}
+        <div class = 'container'>
+            <div class="card text-center" style="width: 18rem;">
+                <h5 class="card-title">{{ u.name }}</h5>
+               
+                <h1>{{ u.username }}</h1>
+                <div class="card-body">
+                <a href="{{ url_for('battle.battling', user_id = u.id ) }}" class="card-link btn btn-primary">Battle</a>
+                </div>
+            </div>
+        
+        </div>
+    {% endfor %}
+{% endblock %}

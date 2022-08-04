@@ -4,6 +4,7 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 
 from.pokemon.routes import poke
+from .battle.routes import battle
 
 # import blueprints
 from .auth.routes import auth
@@ -19,6 +20,8 @@ def load_user(user_id):
 app.register_blueprint(auth)
 
 app.register_blueprint(poke)
+
+app.register_blueprint(battle)
 
 app.config.from_object(Config)
 

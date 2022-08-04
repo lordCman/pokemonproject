@@ -3,7 +3,9 @@
 
 {% block content %}
     <h1 class = 'text-center text-danger'> Your Pokedex</h1>
-
+    {% for poke in pokemon %}
+        <img src = '{{ poke.imgurl }}'>
+    {% endfor %}
 
 {% endblock %}
 

@@ -19,11 +19,4 @@ class PokemonInfoForm(FlaskForm):
 #     email = StringField('Email', validators=[])
 #     password = PasswordField('Password', validators=[])
 
-class insertPokeForm(FlaskForm):
-    name = StringField('Name')
-    attack = StringField('Attack')
-    defense = StringField('Defense')
-    hp = StringField('Hp')
-    ability = StringField('Ability')
-    
     
